@@ -1,0 +1,37 @@
+# This workflow will upload a Python Package using Twine when a release is created
+# For more information see: https://help.github.com/en/actions/language-and-framework-guides/using-python-with-github-actions#publishing-to-package-registries
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Upload Python Package
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: 'recursive'
+    - name: Docker Login
+      run: |
+        docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}}
+    - name: Build the bot Docker image
+      run: docker build ./bot --tag ${{secrets.DOCKER_USER}}/safebull-bot:dev
+      
+    - name: Docker bot Push
+      run: docker push ${{secrets.DOCKER_USER}}/safebull-bot:dev
+    
+    - name: Build the api Docker image
+      run: cd bot && docker build ./api --tag ${{secrets.DOCKER_USER}}/safebull-api:dev
+    
+    - name: Docker api Push
+      run: docker push ${{secrets.DOCKER_USER}}/safebull-api:dev
