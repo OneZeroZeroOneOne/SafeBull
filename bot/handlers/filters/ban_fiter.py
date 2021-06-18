@@ -9,6 +9,6 @@ class BanFilter(BoundFilter):
         self.rethrow = rethrow
 
     async def check(self, obj):
-        if obj.conf['is_banned']:
+        if obj.conf['is_banned'] or not obj.conf['is_private']:
             return False
         return True

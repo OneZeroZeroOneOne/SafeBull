@@ -26,6 +26,15 @@ class RuleCheckerMiddleware(LifetimeControllerMiddleware):
             message.conf["has_rights"] = False
         message.conf["is_banned"] = data['user']['is_banned']
         #res = await data['db_worker'].get_last_subscribe_check(message.from_user.id)
+        chat = False
+        if isinstance(message, types.Message):
+            chat = message.chat
+        elif isinstance(message, types.CallbackQuery):
+            chat = message.message.chat
+        if chat:
+            message.conf["is_private"] = True if chat.type == "private" else False
+        else:
+            message.conf["is_private"] = False
         message.conf["in_groups"] = True
         for i in groups:
             chat = await message.bot.get_chat(i)
