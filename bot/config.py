@@ -6,8 +6,6 @@ bot_token = os.environ.get("bot_token")
 
 postgresql = os.environ.get("db_conn_str")
 
-
-
 groups = [-1001433489060]
 
 token_for_refferral = 200000
