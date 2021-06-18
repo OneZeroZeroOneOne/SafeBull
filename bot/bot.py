@@ -1,3 +1,4 @@
+from handlers.filters.ban_fiter import BanFilter
 from middlewares.rule_checker_middleware import RuleCheckerMiddleware
 from handlers.register_handlers import register_handlers
 from middlewares.user_provider_middleware import UserProviderMiddleware
@@ -35,6 +36,12 @@ def start_polling(token: str, postgres: str):
 
     dp["connection_string"] = postgres
 
+    dp.filters_factory.bind(BanFilter, event_handlers=[
+        dp.callback_query_handlers,
+        dp.message_handlers,
+        dp.errors_handlers,
+        dp.inline_query_handlers
+    ])
     dp.middleware.setup(LoggingMiddleware())
     dp.middleware.setup(DatabaseProviderMiddleware(dp))
     dp.middleware.setup(UserProviderMiddleware(dp))

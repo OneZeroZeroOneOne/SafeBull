@@ -14,4 +14,4 @@ from handlers.keybs.subscribe import subscribe
 
 async def cancel(query: types.CallbackQuery, user: dict, db_worker: DBWorker, _: dict, state: FSMContext):
     await state.finish()
-    await query.message.answer(_["cancel"], reply_markup=start_keyb(_['owner_contacts_button'], _['tokens_output_button']))
+    await query.message.answer(_["cancel"], reply_markup=start_keyb(_['owner_contacts_button'], _['tokens_output_button'], _["cabinet"]))

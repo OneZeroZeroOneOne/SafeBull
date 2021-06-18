@@ -23,5 +23,5 @@ async def start_old_user(message: types.Message, user, db_worker: DBWorker, _: d
         user['bep_address'],
         "https://t.me/" + (await message.bot.get_me()).username +f"?start={message.from_user.id}",
         user['tokens']),
-        reply_markup=start_keyb(_['owner_contacts_button'], _['tokens_output_button'])
+        reply_markup=start_keyb(_['owner_contacts_button'], _['tokens_output_button'], _["cabinet"])
         )

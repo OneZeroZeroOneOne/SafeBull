@@ -16,7 +16,7 @@ async def tokens_output(message: types.Message, user: dict, db_worker: DBWorker,
         await TokensOutputForm.set_count.set()
         await message.answer(_['tokens_output'].format(user['tokens']), reply_markup=cancel(_['cancel_button']))
     else:
-        await message.answer(_["order_alr_exist"], reply_markup=start_keyb(_['owner_contacts_button'], _['tokens_output_button']))
+        await message.answer(_["order_alr_exist"], reply_markup=start_keyb(_['owner_contacts_button'], _['tokens_output_button'], _["cabinet"]))
 
 
 async def writed_tokens_output_count(message: types.Message, user: dict, db_worker: DBWorker, _: dict, state: FSMContext):
@@ -24,15 +24,15 @@ async def writed_tokens_output_count(message: types.Message, user: dict, db_work
         if user['tokens'] >= int(message.text):
             exist_output = await db_worker.get_tokens_output(user['id'])
             if exist_output:
-                await message.answer(_["order_alr_exist"], reply_markup=start_keyb(_['owner_contacts_button'], _['tokens_output_button']))
+                await message.answer(_["order_alr_exist"], reply_markup=start_keyb(_['owner_contacts_button'], _['tokens_output_button'], _["cabinet"]))
                 await state.finish()
                 return
             await db_worker.minus_user_tokens(user['id'], int(message.text))
             id = await db_worker.add_tokens_output(user['id'], datetime.now(), int(message.text))
             if id:
-                await message.answer(_["output_order_created"].format(id), reply_markup=start_keyb(_['owner_contacts_button'], _['tokens_output_button']))
+                await message.answer(_["output_order_created"].format(id), reply_markup=start_keyb(_['owner_contacts_button'], _['tokens_output_button'], _["cabinet"]))
             else:
-                await message.answer("ERROR oreder not created", reply_markup=start_keyb(_['owner_contacts_button'], _['tokens_output_button']))
+                await message.answer("ERROR oreder not created", reply_markup=start_keyb(_['owner_contacts_button'], _['tokens_output_button'], _["cabinet"]))
             await state.finish()
         else:
             await message.answer(_["not_enough_money"], reply_markup=cancel(_['cancel_button']))

@@ -4,6 +4,6 @@ from aiogram.types import ReplyKeyboardRemove, \
 
 
 def simple_text(text):
-    keyb = ReplyKeyboardMarkup()
+    keyb = ReplyKeyboardMarkup(resize_keyboard=True)
     keyb.add(KeyboardButton(text))
     return keyb

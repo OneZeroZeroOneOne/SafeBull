@@ -23,7 +23,10 @@ async def subscribe_check_true(query: types.CallbackQuery, user: dict, db_worker
         accrual = await db_worker.get_invite_accruals(query.from_user.id, user['refferrer_id'])
         if not accrual:
             await db_worker.add_invite_accruals(user['refferrer_id'], user['id'], datetime.now(), token_for_refferral)
-            await db_worker.add_token_for_user(user['refferrer_id'], token_for_refferral)
+            try:
+                await db_worker.add_token_for_user(user['refferrer_id'], token_for_refferral)
+            except:
+                pass
             await query.bot.send_message(user['refferrer_id'], text=_['add_token_for_invite_user'].format(token_for_refferral, query.from_user.full_name))
     await query.message.answer(_["thnx_for_subscribes"])
     await query.message.answer(_["start_screen"].format(
@@ -33,4 +36,4 @@ async def subscribe_check_true(query: types.CallbackQuery, user: dict, db_worker
         "https://t.me/" + (await query.bot.get_me()).username+f"?start={query.from_user.id}",
         user['tokens']
         ),
-        reply_markup=start_keyb(_['owner_contacts_button'], _['tokens_output_button']))
+        reply_markup=start_keyb(_['owner_contacts_button'], _['tokens_output_button'], _["cabinet"]))

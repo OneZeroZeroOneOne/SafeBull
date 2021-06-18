@@ -32,6 +32,7 @@ def register_handlers(dp: Dispatcher):
     
 
     dp.register_message_handler(start_old_user, lambda msg: msg.conf["has_rights"] == True, commands=['start'])
+    dp.register_message_handler(start_old_user, lambda msg: msg.conf["has_rights"] == True and msg.text in [i['cabinet'] for i in texts.values()])
     dp.register_message_handler(tokens_output, lambda msg: msg.text in [i['tokens_output_button'] for i in texts.values()] and msg.conf["has_rights"] == True and msg.conf["in_groups"] == True,)
     dp.register_message_handler(writed_tokens_output_count, state=TokensOutputForm.set_count)
     dp.register_message_handler(contacts, lambda msg: msg.text in [i['owner_contacts_button'] for i in texts.values()])
