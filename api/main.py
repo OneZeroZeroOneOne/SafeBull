@@ -12,6 +12,7 @@ app = FastAPI()
 
 @app.get("/")
 async def read_root():
+    print("GET")
     conn = await get_conn(postgresql)
     db_worker = DBWorker(conn)
     a = await db_worker.get_all_tokens_output()
@@ -20,6 +21,7 @@ async def read_root():
 
 @app.delete("/{output_id}")
 async def delete_token_output(output_id: int):
+    print("DELETE")
     conn = await get_conn(postgresql)
     db_worker = DBWorker(conn)
     a = await db_worker.delete_tokens_output(output_id)

@@ -5,8 +5,8 @@ from enum import Enum
 bot_token = os.environ.get("bot_token")
 
 postgresql = os.environ.get("db_conn_str")
-
-
+#postgresql = "postgres://postgres:123123123@167.86.74.97:5435/safebull"
+#bot_token = "1820522016:AAF9u0uoyoFdJn8-n_YSEKOtn73rESS21Fk"
 groups = [-1001433489060]
 
 token_for_refferral = 200000

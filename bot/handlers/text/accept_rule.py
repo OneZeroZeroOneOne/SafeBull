@@ -25,7 +25,7 @@ async def accept_rule(message: types.Message, user: dict, db_worker: DBWorker, _
 
 
 def text_on_img(filename, text, size=12):
-    fnt = ImageFont.truetype('arial.ttf', size)
+    fnt = ImageFont.truetype('./arial.ttf', size)
     image = Image.new(mode = "RGB", size = (int(size/2)*len(text),size+50), color = "red")
     draw = ImageDraw.Draw(image)
     draw.text((10,10), text, font=fnt, fill=(255,255,0))
