@@ -1,0 +1,5 @@
+aiogram==2.13
+asyncpg==0.23.0
+loguru==0.5.3
+Pillow==8.2.0
+yarl==1.6.3
