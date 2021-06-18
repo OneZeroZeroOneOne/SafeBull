@@ -1,4 +1,5 @@
 
+from handlers.keybs.start import start_keyb
 from aiogram import types
 import typing
 
@@ -31,4 +32,5 @@ async def subscribe_check_true(query: types.CallbackQuery, user: dict, db_worker
         user['bep_address'],
         "https://t.me/" + (await query.bot.get_me()).username+f"?start={query.from_user.id}",
         user['tokens']
-        ))
+        ),
+        reply_markup=start_keyb(_['owner_contacts_button'], _['tokens_output_button']))

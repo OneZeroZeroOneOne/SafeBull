@@ -11,7 +11,7 @@ async def confirm_captcha(message: types.Message, user: dict, db_worker: DBWorke
         if int(message.text) == (await state.get_data())["confirm_captcha"]:
             await db_worker.set_confirm_captcha(message.from_user.id)
             await MainForm.set_bep_20.set()
-            await message.answer("set_bep_20")
+            await message.answer(_["set_bep_20"])
         else:
             if (await state.get_data())["caption_attempt"] == 1:
                 await state.finish()

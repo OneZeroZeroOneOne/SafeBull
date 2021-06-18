@@ -14,7 +14,9 @@ services:
   safebull-api:
     depends_on:
       - postgresql
-    image: bitoid/safebull-api:dev
+    build:
+      context: ./api
+      dockerfile: ./Dockerfile
     env_file:
      - ./.env
     ports:
@@ -22,9 +24,12 @@ services:
   safebull-bot:
     depends_on:
       - postgresql
-    image: bitoid/safebull-bot:dev
+    build:
+      context: ./bot
+      dockerfile: ./Dockerfile
     env_file:
-     - ./.env
+      - ./.env
+
   nginx:
     depends_on:
       - safebull-api

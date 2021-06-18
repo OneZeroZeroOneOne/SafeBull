@@ -5,8 +5,7 @@ from enum import Enum
 bot_token = os.environ.get("bot_token")
 
 postgresql = os.environ.get("db_conn_str")
-#postgresql = "postgres://postgres:123123123@167.86.74.97:5435/safebull"
-#bot_token = "1820522016:AAF9u0uoyoFdJn8-n_YSEKOtn73rESS21Fk"
+
 groups = [-1001433489060]
 
 token_for_refferral = 200000
@@ -38,36 +37,42 @@ texts = {
         "please_write_number": "Введите число!",
         "thnx_for_subscribes": "Спасибо что подписались на наши ресурсы",
         "output_order_created": "Заявка на вывод была создана № заявки - {}",
-        "order_alr_exist": "У вас уже есть заявка на вывод, подождите пока вашу заявку одобрят, после чего вы сможете подать новую заявку"
+        "order_alr_exist": "У вас уже есть заявка на вывод, подождите пока вашу заявку одобрят, после чего вы сможете подать новую заявку",
+        "cancel_button": "Отменить",
+        "cancel": "Отменено",
+        "not_enough_money": "не достаточно SAFEBULL"
     },
     'en': {
-         "hello": "hello",
-         "select_lang": "Select you language",
-         "lang_name": "English",
-         "participate": "Participate text",
-         "participate_button": "Participate",
-         "accept_rule": "accept rule text",
-         "accept_rule_button": "Confirm",
-         "captcha": "Captcha",
-         "answer_captcha_is_number": "answer_captcha_is_number",
-         "wrong_captcha_answer": "wrong_captcha_answer {}",
-         "you_was_be_banned": "you_was_be_banned",
-         "check_subscribe_button": "check_subscribe_button",
-         "subscribe_groups": "subscribe_groups",
-         "subscribe_check_false": "subscribe_check_false",
-         "set_bep_20": "type your set_bep_20 adress",
-         "invalid_bep_address": "invalid_bep_address",
-         'add_token_for_invite_user': 'added {} tokens to you wallet  for invite user {}',
-         "start_screen": "your details:\n{} subscribe on all groups\n{} BEP-20 address - {}\nyour refferal invite address - {}\nwallet score - {} SAFEBULL",
-         "owner_contacts_button": "Contacts",
-         "owner_contacts": "here will be owner contacts",
-         "tokens_output_button": "Output",
-         "tokens_output": "type count of SAFEBULL while you want output. You have {} SAFEBULL",
-         "already_exist_output_order": "Order of output already exist",
-         "please_write_number": "please_write_number",
-         "thnx_for_subscribes": "thnx_for_subscribes",
-         "output_order_created": "output_order_created {}",
-         "order_alr_exist": "order_alr_exist"
+        "hello": "hello",
+        "select_lang": "Select you language",
+        "lang_name": "English",
+        "participate": "Participate text",
+        "participate_button": "Participate",
+        "accept_rule": "accept rule text",
+        "accept_rule_button": "Confirm",
+        "captcha": "Captcha",
+        "answer_captcha_is_number": "answer_captcha_is_number",
+        "wrong_captcha_answer": "wrong_captcha_answer {}",
+        "you_was_be_banned": "you_was_be_banned",
+        "check_subscribe_button": "check_subscribe_button",
+        "subscribe_groups": "subscribe_groups",
+        "subscribe_check_false": "subscribe_check_false",
+        "set_bep_20": "type your set BEP 20 adress",
+        "invalid_bep_address": "invalid_bep_address",
+        'add_token_for_invite_user': 'added {} tokens to you wallet  for invite user {}',
+        "start_screen": "your details:\n{} subscribe on all groups\n{} BEP-20 address - {}\nyour refferal invite address - {}\nwallet score - {} SAFEBULL",
+        "owner_contacts_button": "Contacts",
+        "owner_contacts": "here will be owner contacts",
+        "tokens_output_button": "Output",
+        "tokens_output": "type count of SAFEBULL while you want output. You have {} SAFEBULL",
+        "already_exist_output_order": "Order of output already exist",
+        "please_write_number": "please_write_number",
+        "thnx_for_subscribes": "thnx_for_subscribes",
+        "output_order_created": "output_order_created {}",
+        "order_alr_exist": "order_alr_exist",
+        "cancel_button": "Cancel",
+        "cancel": "Canceled",
+        "not_enough_money": "not enough SAFEBULL"
     }
 }
 
