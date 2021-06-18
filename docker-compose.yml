@@ -17,3 +17,17 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     ports:
       - "80:80"
+  safebull-api:
+    depends_on:
+      - postgresql
+      - nginx
+    image: bitoid/safebull-api:dev
+    env_file:
+     - ./.env
+  safebull-bot:
+    depends_on:
+      - postgresql
+      - nginx
+    image: bitoid/safebull-bot:dev
+    env_file:
+     - ./.env

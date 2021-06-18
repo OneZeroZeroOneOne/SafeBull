@@ -2,9 +2,9 @@ import datetime
 import os
 from enum import Enum
 
-bot_token = "1820522016:AAF9u0uoyoFdJn8-n_YSEKOtn73rESS21Fk"
+bot_token = os.environ.get("bot_token")
 
-postgresql = "postgres://postgres:werdwerd2012@194.99.21.140:5433/safebull"
+postgresql = os.environ.get("db_conn_str")
 
 groups = [-1001433489060]
 
