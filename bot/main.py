@@ -21,6 +21,10 @@ def start():
 
 
 if __name__ == "__main__":
+    import os
+
+    if not os.path.exists("./logs"):
+        os.mkdir("./logs")
     logging.basicConfig(handlers=[InterceptStandartHandler()], level=logging.WARN)
     handler = LogsWriterHandler()
     handler.log_date_file = floor(time.time())
