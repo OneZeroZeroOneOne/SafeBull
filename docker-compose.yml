@@ -5,11 +5,10 @@ services:
     image: "postgres:12"
     env_file:
         - ./.env
-    volumes:
-        - database-data:/var/lib/postgresql/data/
     ports:
         - "5435:5432"
     volumes:
+        - database-data:/var/lib/postgresql/data/
         - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
   safebull-api:
     depends_on:
@@ -38,4 +37,7 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     ports:
       - "80:80"
-  
+
+
+volumes:
+  database-data:
