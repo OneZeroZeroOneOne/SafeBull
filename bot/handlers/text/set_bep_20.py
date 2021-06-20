@@ -1,3 +1,5 @@
+from handlers.keybs.twitter import twitter_keyb
+from aiogram.types.input_file import InputFile
 from utils.validate_bep_20 import validate_bep_20
 from aiogram import types
 from database.db_worker import DBWorker
@@ -15,6 +17,7 @@ async def set_bep_20(message: types.Message, user: dict, db_worker: DBWorker, _:
         for group_id in groups:
             chat = await message.bot.get_chat(group_id)
             chat_name_url[chat.full_name] = await chat.get_url()
+        await message.answer_photo(InputFile("twitter.jpg", filename="twitter.jpg"), caption=_["twitter_subscribe"], reply_markup=twitter_keyb("https://twitter.com/safebull1"))
         await message.answer(_["subscribe_groups"], reply_markup=subscribe(chat_name_url, _['check_subscribe_button']))
     else:
         await message.answer(_["invalid_bep_address"])

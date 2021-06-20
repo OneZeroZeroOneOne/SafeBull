@@ -18,10 +18,11 @@ async def start_new_user(message: types.Message, user: dict, db_worker: DBWorker
 
 async def start_old_user(message: types.Message, user, db_worker: DBWorker, _: dict):
     await message.answer(_["start_screen"].format(
+        message.from_user.first_name,
         "✅" if message.conf["in_groups"] else "❌",
         "✅" if validate_bep_20(" " if user['bep_address'] == None else user['bep_address']) else "❌",
         user['bep_address'],
         "https://t.me/" + (await message.bot.get_me()).username +f"?start={message.from_user.id}",
         user['tokens']),
-        reply_markup=start_keyb(_['owner_contacts_button'], _['tokens_output_button'], _["cabinet"])
+        reply_markup=start_keyb(_['balance_button'], _["sot_network_button"] ,_['tokens_output_button'], _["ref_button"])
         )

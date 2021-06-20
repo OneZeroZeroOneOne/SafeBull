@@ -1,15 +1,9 @@
-from typing import Any, Type
-
 from aiogram.dispatcher.dispatcher import Dispatcher
 from aiogram.dispatcher.middlewares import LifetimeControllerMiddleware
-from asyncpg import Connection
 
 from aiogram import types
 
-from loguru import logger
-from database.db_worker import DBWorker
-from config import groups, group_leave_timeout_sec
-import datetime
+from config import groups
 
 class RuleCheckerMiddleware(LifetimeControllerMiddleware):
 
@@ -26,7 +20,7 @@ class RuleCheckerMiddleware(LifetimeControllerMiddleware):
             message.conf["has_rights"] = False
         message.conf["is_banned"] = data['user']['is_banned']
         #res = await data['db_worker'].get_last_subscribe_check(message.from_user.id)
-        chat = False
+        chat = None
         if isinstance(message, types.Message):
             chat = message.chat
         elif isinstance(message, types.CallbackQuery):

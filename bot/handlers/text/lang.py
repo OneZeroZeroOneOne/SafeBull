@@ -1,4 +1,5 @@
 from aiogram import types
+from aiogram.types.input_file import InputFile
 from database.db_worker import DBWorker
 from loguru import logger
 from config import texts, Lang
@@ -14,4 +15,4 @@ async def select_lang(message: types.Message, user: dict, db_worker: DBWorker, _
             await db_worker.set_user_lang(lang_id, message.from_user.id)
     await state.finish()
     await MainForm.participate.set()
-    await message.answer(_["participate"], reply_markup=simple_text(_["participate_button"]))
+    await message.answer_photo(InputFile("participate.jpg", filename="participate.jpg"), caption=_["participate"].format(message.from_user.first_name), reply_markup=simple_text(_["participate_button"]))

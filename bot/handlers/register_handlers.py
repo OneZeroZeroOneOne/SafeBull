@@ -1,6 +1,8 @@
 
+from handlers.text.ref import ref
+from handlers.text.sot_net import sot_net
+from handlers.text.balance import balance
 from handlers.callback.cancel import cancel
-from handlers.text.contacts import contacts
 from handlers.text.tokens_output import tokens_output, writed_tokens_output_count
 from handlers.callback.start import start_new_user_cb
 from handlers.text.set_bep_20 import set_bep_20
@@ -32,10 +34,12 @@ def register_handlers(dp: Dispatcher):
     
 
     dp.register_message_handler(start_old_user, lambda msg: msg.conf["has_rights"] == True, commands=['start'])
-    dp.register_message_handler(start_old_user, lambda msg: msg.conf["has_rights"] == True and msg.text in [i['cabinet'] for i in texts.values()])
     dp.register_message_handler(tokens_output, lambda msg: msg.text in [i['tokens_output_button'] for i in texts.values()] and msg.conf["has_rights"] == True and msg.conf["in_groups"] == True,)
     dp.register_message_handler(writed_tokens_output_count, state=TokensOutputForm.set_count)
-    dp.register_message_handler(contacts, lambda msg: msg.text in [i['owner_contacts_button'] for i in texts.values()])
+    dp.register_message_handler(balance, lambda msg: msg.text in [i['balance_button'] for i in texts.values()])
+    dp.register_message_handler(sot_net, lambda msg: msg.text in [i['sot_network_button'] for i in texts.values()])
+    dp.register_message_handler(ref, lambda msg: msg.text in [i['ref_button'] for i in texts.values()])
+    
 
     dp.register_callback_query_handler(subscribe_check_false, lambda msg: msg.data == check_subscribe_cb and msg.conf["has_rights"] == True and msg.conf["in_groups"] == False)
     dp.register_callback_query_handler(subscribe_check_true, lambda msg: msg.data == check_subscribe_cb and msg.conf["has_rights"] == True and msg.conf["in_groups"] == True)

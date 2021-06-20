@@ -75,5 +75,9 @@ class DBWorker:
         sql = "update \"user\" set \"tokens\" = \"tokens\" - $2 where \"id\" = $1"
         await self.conn.execute(sql, user_id, tokens)
     
+    async def get_user_invite_accruals(self, user_id):
+        sql = "select * from \"invite_accruals\" where \"inviting_user_id\" = $1"
+        return await self.conn.fetch(sql, user_id)
+    
     
     

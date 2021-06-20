@@ -3,8 +3,8 @@ from aiogram.types import ReplyKeyboardRemove, \
     InlineKeyboardMarkup, InlineKeyboardButton
 
 
-def start_keyb(info, output, kabinet):
+def start_keyb(urls, bance, output, ref):
     keyb = ReplyKeyboardMarkup(resize_keyboard=True)
-    keyb.row(*[KeyboardButton(kabinet), KeyboardButton(info)])
-    keyb.add(KeyboardButton(output))
+    keyb.row(KeyboardButton(urls), KeyboardButton(bance))
+    keyb.add(KeyboardButton(output), KeyboardButton(ref))
     return keyb
