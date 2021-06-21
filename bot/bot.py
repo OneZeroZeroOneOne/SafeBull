@@ -10,6 +10,7 @@ from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.contrib.middlewares.logging import LoggingMiddleware
 from aiogram.utils import executor
+from database.get_conn import get_conn
 
 from middlewares.database_provider_middleware import DatabaseProviderMiddleware
 
@@ -31,6 +32,7 @@ async def on_startup(dp: Dispatcher):
 
 
 def start_polling(token: str, postgres: str):
+    conn = await get_conn(postgresql)
     bot = init_bot(token)
     dp = init_dispatcher(bot)
 

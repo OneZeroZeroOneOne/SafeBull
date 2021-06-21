@@ -15,12 +15,15 @@ import threading
 from aiogram.utils import executor
 from bot import start_polling
 from config import bot_token, postgresql
+from database.get_conn import get_conn
 
 def start():
     start_polling(bot_token, postgresql)
 
 
 if __name__ == "__main__":
+    logger.info(postgresql)
+    conn = await get_conn(postgresql)
     import os
     if not os.path.exists("./logs"):
         os.mkdir("./logs")
