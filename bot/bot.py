@@ -14,6 +14,8 @@ from database.get_conn import get_conn
 
 from middlewares.database_provider_middleware import DatabaseProviderMiddleware
 
+from loguru import logger
+
 def init_bot(token: str):
     return Bot(token=token, parse_mode='HTML')
 
@@ -26,13 +28,17 @@ def init_dispatcher(bot: Bot):
 
 
 async def on_startup(dp: Dispatcher):
+    logger.info("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+    logger.info(dp["connection_string"])
+    conn = await get_conn(dp["connection_string"])
+
     dp["db_pool"] = await get_pool(
         dp["connection_string"],
 )
 
 
 def start_polling(token: str, postgres: str):
-    conn = await get_conn(postgresql)
+    
     bot = init_bot(token)
     dp = init_dispatcher(bot)
 
