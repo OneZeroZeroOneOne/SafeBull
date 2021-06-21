@@ -2,14 +2,17 @@ import datetime
 import os
 from enum import Enum
 
-bot_token = os.environ.get("bot_token")
+#bot_token = os.environ.get("bot_token")
 
-postgresql = os.environ.get("db_conn_str")
-
+#postgresql = os.environ.get("db_conn_str")
+postgresql = "postgres://postgres:123123123@167.86.74.97:5435/safebull"
+bot_token = "1820522016:AAF9u0uoyoFdJn8-n_YSEKOtn73rESS21Fk"
 
 groups = []
 
 token_for_refferral = 200000
+
+token_for_subscribe = 300000
 
 texts = {
     'ru': {
@@ -78,7 +81,8 @@ texts = {
         "cancel": "✅Отменено✅",
         "not_enough_money": "🚧Не достаточно SafeBull на вашем счету",
         "twitter_subscribe": "<b>☑️ Подпишитесь на наш Twitter</b>",
-        "balance": """💰 Всего: {} SAFEBULL 
+        "balance": """💰 Всего: {} SAFEBULL
+💰 Участие в Раздаче: {} SAFEBULL 
 💵 Бонус за рефералов: {} SAFEBULL 
 Рефералов: {} """,
         "balance_button": "Баланс 💰",

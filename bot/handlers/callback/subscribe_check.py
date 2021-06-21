@@ -4,10 +4,11 @@ import typing
 
 from aiogram.types import message
 from database.db_worker import DBWorker
-from config import groups, token_for_refferral
+from config import groups, token_for_refferral, token_for_subscribe
 from handlers.keybs.subscribe import subscribe
 from utils.validate_bep_20 import validate_bep_20
 from datetime import datetime
+
 
 
 async def subscribe_check_false(
@@ -27,6 +28,10 @@ async def subscribe_check_false(
 async def subscribe_check_true(
     query: types.CallbackQuery, user: dict, db_worker: DBWorker, _: dict
 ):
+    rules_tokens = await db_worker.get_rules_tokens(query.from_user.id)
+    if not rules_tokens:
+        await db_worker.add_rules_tokens(query.from_user.id, token_for_subscribe, datetime.now())
+        await db_worker.add_token_for_user(query.from_user.id, token_for_subscribe)
     if user["refferrer_id"]:
         accrual = await db_worker.get_invite_accruals(
             query.from_user.id, user["refferrer_id"]

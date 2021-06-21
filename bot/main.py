@@ -22,7 +22,6 @@ def start():
 
 if __name__ == "__main__":
     import os
-
     if not os.path.exists("./logs"):
         os.mkdir("./logs")
     logging.basicConfig(handlers=[InterceptStandartHandler()], level=logging.WARN)

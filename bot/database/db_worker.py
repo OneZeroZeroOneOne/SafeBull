@@ -50,6 +50,9 @@ class DBWorker:
         sql = "select * from \"invite_accruals\" where \"inviting_user_id\" = $1 and  \"invited_id\" = $2"
         return await self.conn.fetchrow(sql, inviter_id, invited_id)
     
+    async def get_invite_user_accruals(self, user_id):
+        sql = "select * from \"invite_accruals\" where \"inviting_user_id\" = $1"
+        return await self.conn.fetch(sql, user_id)
     
     async def add_token_for_user(self, user_id, tokens: int):
             sql = "update \"user\" set \"tokens\" = \"tokens\" + $1 where \"id\" = $2"
@@ -75,9 +78,15 @@ class DBWorker:
         sql = "update \"user\" set \"tokens\" = \"tokens\" - $2 where \"id\" = $1"
         await self.conn.execute(sql, user_id, tokens)
     
-    async def get_user_invite_accruals(self, user_id):
-        sql = "select * from \"invite_accruals\" where \"inviting_user_id\" = $1"
-        return await self.conn.fetch(sql, user_id)
+    async def get_rules_tokens(self, user_id):
+        sql = "select * from \"rules_tokens\" where \"user_id\" = $1"
+        return await self.conn.fetchrow(sql, user_id)
+    
+    async def add_rules_tokens(self, user_id, tokens, created_date_time):
+        sql = "insert into \"rules_tokens\"(\"user_id\",\"tokens\", \"created_date_time\") values($1, $2, $3) on conflict do nothing"
+        return await self.conn.fetchrow(sql, user_id, tokens, created_date_time)
+    
+    
     
     
     

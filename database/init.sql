@@ -1,18 +1,18 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 194.99.21.140
+ Source Server         : 167.86.74.97
  Source Server Type    : PostgreSQL
- Source Server Version : 120005
- Source Host           : 194.99.21.140:5433
+ Source Server Version : 120007
+ Source Host           : 167.86.74.97:5435
  Source Catalog        : safebull
  Source Schema         : public
 
  Target Server Type    : PostgreSQL
- Target Server Version : 120005
+ Target Server Version : 120007
  File Encoding         : 65001
 
- Date: 18/06/2021 02:38:27
+ Date: 21/06/2021 03:53:52
 */
 
 
@@ -71,6 +71,21 @@ INSERT INTO "public"."lang" VALUES (1, 'ru');
 INSERT INTO "public"."lang" VALUES (2, 'en');
 
 -- ----------------------------
+-- Table structure for rules_tokens
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."rules_tokens";
+CREATE TABLE "public"."rules_tokens" (
+  "user_id" int4 NOT NULL,
+  "tokens" int4 NOT NULL,
+  "created_date_time" timestamp(6) NOT NULL
+)
+;
+
+-- ----------------------------
+-- Records of rules_tokens
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for tokens_output
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."tokens_output";
@@ -113,12 +128,12 @@ CREATE TABLE "public"."user" (
 -- ----------------------------
 ALTER SEQUENCE "public"."lang_id_seq"
 OWNED BY "public"."lang"."id";
-SELECT setval('"public"."lang_id_seq"', 2, false);
+SELECT setval('"public"."lang_id_seq"', 3, false);
 
 -- ----------------------------
 -- Alter sequences owned by
 -- ----------------------------
-SELECT setval('"public"."tokens_output_id_seq"', 5, true);
+SELECT setval('"public"."tokens_output_id_seq"', 6, true);
 
 -- ----------------------------
 -- Primary Key structure for table invite_accruals
@@ -129,6 +144,11 @@ ALTER TABLE "public"."invite_accruals" ADD CONSTRAINT "invite_accruals_pkey" PRI
 -- Primary Key structure for table lang
 -- ----------------------------
 ALTER TABLE "public"."lang" ADD CONSTRAINT "lang_pkey" PRIMARY KEY ("id");
+
+-- ----------------------------
+-- Primary Key structure for table rules_tokens
+-- ----------------------------
+ALTER TABLE "public"."rules_tokens" ADD CONSTRAINT "rules_tokens_pkey" PRIMARY KEY ("user_id");
 
 -- ----------------------------
 -- Primary Key structure for table tokens_output
@@ -145,6 +165,11 @@ ALTER TABLE "public"."user" ADD CONSTRAINT "user_pkey" PRIMARY KEY ("id");
 -- ----------------------------
 ALTER TABLE "public"."invite_accruals" ADD CONSTRAINT "invite_accruals_invited_id_fkey" FOREIGN KEY ("invited_id") REFERENCES "public"."user" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
 ALTER TABLE "public"."invite_accruals" ADD CONSTRAINT "invite_accruals_inviting_user_id_fkey" FOREIGN KEY ("inviting_user_id") REFERENCES "public"."user" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- ----------------------------
+-- Foreign Keys structure for table rules_tokens
+-- ----------------------------
+ALTER TABLE "public"."rules_tokens" ADD CONSTRAINT "rules_tokens_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "public"."user" ("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- ----------------------------
 -- Foreign Keys structure for table tokens_output
