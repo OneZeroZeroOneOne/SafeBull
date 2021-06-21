@@ -19,7 +19,7 @@ services:
     env_file:
      - ./.env
     ports:
-    - "4477:80"
+    - "80:4477"
   safebull-bot:
     depends_on:
       - postgresql
