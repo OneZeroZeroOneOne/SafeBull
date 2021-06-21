@@ -2,10 +2,11 @@ import datetime
 import os
 from enum import Enum
 
-bot_token = os.environ.get("bot_token")
+#bot_token = os.environ.get("bot_token")
 
-postgresql = os.environ.get("db_conn_str")
-
+#postgresql = os.environ.get("db_conn_str")
+postgresql = "postgres://postgres:123123123@167.86.74.97:5435/safebull"
+bot_token = "1820522016:AAF9u0uoyoFdJn8-n_YSEKOtn73rESS21Fk"
 
 groups = []
 
@@ -105,58 +106,54 @@ texts = {
         "hello": "hello",
         "select_lang": "<b>Select you language</b>",
         "lang_name": "English🇺🇸",
-        "participate": """Hi {}, I'm SafeBull AirDrop Bot 🚀🤝
+        "participate": """Hello, {}, I'm SafeBull airdrop bot🚀🤝
 
-✅ To get coins in the distribution you need to complete several tasks
+✅ You need to complete several tasks to get our tokens.
 
-🔸 For completing all tasks you will receive 300,000 SAFEBULL tokens
+🔸 You will receive 300.000 SafeBull tokens for completing all the tasks.
 
-⭐️ For an invited friend, you will receive 200,000 SAFEBULL tokens
+⭐️ You will receive 200.000 more Safebull tokens for each invited friend.
 
-Click "Participate in Airdrop" to continue""",
+Click "Participate an airdrop" to continue.""",
         "participate_button": "Participate in Airdrop",
-        "accept_rule": """📘 By participating, you agree to the SafeBull Giveaway Terms and Conditions
+        "accept_rule": """📘 By participating, you agree to the terms and conditions of the SafeBull Distribution. 
 
-👨‍💻 Please read carefully👩‍💻
+👨‍💻 Please read carefully 👩 💻 
 
-❗️ After completing all the tasks, you will receive the maximum number of tokens as a reward, if you do not fulfill one of the conditions, then it will be impossible to receive the reward.
+❗️After completing all the tasks you will receive the maximum amount of tokens as a reward. If you don't fulfill one of the conditions then it will be impossible to get your reward.
 
-❗️The completion of tasks is strictly checked and if one of the conditions is not met, SAFEBULL tokens will not be credited. We want you to get the maximum number of tokens, so we kindly ask you to complete all tasks and stay subscribed to our social networks until the end of the Airdrop. If you or your referral unsubscribe before the end of the distribution, the reward will be deducted from your balance!
+The tasks are strictly checked and if one of the conditions is not fulfilled the SAFEBULL tokens will not be credited. We want you to get the maximum amount of tokens, so we kindly ask you to complete all the tasks and stay subscribed to our social networks until the end of the Airdrop. If you or your referral unsubscribes before the end of the distribution, the reward will be deducted from your balance! 
 
-Click “Agree” if you accept the terms and conditions of the Airdrop.""",
+Click "Agree" if you accept the Airdrop terms and conditions.""",
         "accept_rule_button": "Agree",
-        "captcha": """To continue,
-please answer this
-math question. it
-you need to understand
-you are a human or a bot.
-You have 3 attempts left""",
+        "captcha": """Solve this mathematical question to continue. We need it to understand whether you are a human or a bot.
+You have 3 attempts left.""",
         "answer_captcha_is_number": "You must enter a number",
         "wrong_captcha_answer": "Wrong answer, attempts left: {}",
         "you_was_be_banned": "You have been banned, the bot will no longer answer you",
         "check_subscribe_button": "Subscribed",
-        "subscribe_groups": """<b>☑️ Subscribe to our telegram channel
-☑️ Subscribe to our telegram chat</b>""",
+        "subscribe_groups": """<b>☑️ Follow our Telegram channel.
+☑️ Follow our Telegram chat.</b>""",
         "subscribe_check_false": "You need to subscribe to all channels and groups",
-        "set_bep_20": """Enter your BEP-20 wallet address
-(binance smart chain):
-⚙️Address must start with 0x
-⚙️Example: 0xfa344c08c93066a4d6266063c6ebc63925a18467""",
-        "invalid_bep_address": "<b>Wrong format!</b> Please enter the address again",
+        "set_bep_20": """Submit your BEP-20 adress (binance smart chain):
+● The adress must start with 0x 
+● Example: 0xfa344c08c93066a4d6266063c6ebc63925a18467""",
+        "invalid_bep_address": "<b>Wrong format!</b> Please submit your adress again.",
         'add_token_for_invite_user': 'You were credited with {} token(s) for attracting a user {}',
-        "start_screen": """Thank you {} for participating in the SafeBull Airdrop
+        "start_screen": """Thank you, {}, for participating SafeBull airdrop.
 Your data:
-{} Joined telegram channel/chat
+{} Joined the telegram channel/chat
 {} BEP-20 Address: {}
 
-Do not forget:
+Don't forget: 
 🔸 Stay in the telegram channel
 🔸 Be subscribed to our social networks
 
-<b>Your unique link for inviting friends:</b> {}
+<b>Your unique link to invite friends:</b>
+{}
 
 Share or forward your link, get 200,000 SAFEBULL tokens for each referral👬
-They must also participate in the Airdrop and agree to receive the reward! Users who are found to be fraudulent will be blocked without the possibility of withdrawing funds.""",
+They must also participate in the Airdrop and accept the conditions to receive the reward! Users who are detected in the fraud will be blocked without the possibility of withdrawing funds.""",
         "tokens_output_button": "💰Output",
         "tokens_output": "Write the whole amount of SAFEBULL you want to withdraw.\nYour account is <b>{}</b> SAFEBULL.",
         "please_write_number": "🤦🏻<b>Enter a number!</b>",
@@ -166,9 +163,10 @@ They must also participate in the Airdrop and agree to receive the reward! Users
         "cancel_button": "❌Cancel❌",
         "cancel": "✅Canceled✅",
         "not_enough_money": "🚧Not enough SafeBull in your account",
-        "twitter_subscribe": "<b>☑️ Follow us on Twitter</b>",
-        "balance": """💰 Total: {} SAFEBULL
-💵 Bonus for referrals: {} SAFEBULL
+        "twitter_subscribe": "<b>☑️ Follow us on Twitter.</b>",
+        "balance": """💰 Total: {} SafeBull
+💰 Participating airdrop: {} SafeBull
+💵 Bonus for referrals: {} SafeBull
 Referrals: {}""",
         "balance_button": "Balance 💰",
         "sot_network_button": "Social networks 📤",
@@ -182,10 +180,8 @@ Referrals: {}""",
         "ref": """Your unique referral link:
 {}
 
-Share and forward your referral link and get 200.000 SAFEBULL from each referral!
-
 Share or forward your link, get 200,000 SAFEBULL tokens for each referral👬
-They must also participate in the Airdrop and agree to receive the reward! Users who are found to be fraudulent will be blocked without the possibility of withdrawing funds."""
+They must also participate airdrop and accept the conditions to receive the reward! Users who are detected in fraud will be blocked without the possibility of withdrawing funds."""
     }
 }
 
