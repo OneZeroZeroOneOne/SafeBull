@@ -1,3 +1,4 @@
+from aiogram.dispatcher.storage import FSMContext
 from handlers.keybs.start import start_keyb
 from utils.validate_bep_20 import validate_bep_20
 from aiogram import types
@@ -7,7 +8,8 @@ from handlers.fsm.lang import SelectLang
 from handlers.keybs.select_lang import select_lang
 from config import texts
 
-async def start_new_user(message: types.Message, user: dict, db_worker: DBWorker, _: dict):
+async def start_new_user(message: types.Message, user: dict, db_worker: DBWorker, _: dict, state: FSMContext):
+    await state.finish()
     args = message.get_args()
     if user['refferrer_id'] == None:
         await db_worker.add_refferrer_id(message.from_user.id, int(args) if args and args.isnumeric() else 0)
@@ -16,7 +18,8 @@ async def start_new_user(message: types.Message, user: dict, db_worker: DBWorker
 
 
 
-async def start_old_user(message: types.Message, user, db_worker: DBWorker, _: dict):
+async def start_old_user(message: types.Message, user, db_worker: DBWorker, _: dict, state: FSMContext):
+    await state.finish()
     await message.answer(_["start_screen"].format(
         message.from_user.first_name,
         "✅" if message.conf["in_groups"] else "❌",

@@ -7,6 +7,9 @@ bot_token = os.environ.get("bot_token")
 postgresql = os.environ.get("db_conn_str")
 
 
+#postgresql = "postgres://user:password@host:port/database?option=value"
+#bot_token = "1820522016:AAF9u0uoyoFdJn8-n_YSEKOtn73rESS21Fk"
+
 groups = [-1001433489060, -1001234598022]
 
 token_for_refferral = 200000
@@ -16,6 +19,7 @@ token_for_subscribe = 300000
 texts = {
     'ru': {
         "hello": "Привет",
+        "bigger_zero": "Число должно быть больше чем 0",
         "select_lang": "<b>Выберите язык</b>",
         "lang_name": "Русский🇷🇺",
         "participate_button": "Участвовать в Airdrop",
@@ -103,6 +107,7 @@ texts = {
     },
     'en': {
         "hello": "hello",
+        "bigger_zero": "The number must be greater than 0",
         "select_lang": "<b>Select you language</b>",
         "lang_name": "English🇺🇸",
         "participate": """Hello, {}, I'm SafeBull airdrop bot🚀🤝

@@ -27,6 +27,10 @@ async def writed_tokens_output_count(message: types.Message, user: dict, db_work
                 await message.answer(_["order_alr_exist"], reply_markup=start_keyb(_['balance_button'], _["sot_network_button"] ,_['tokens_output_button'], _["ref_button"]))
                 await state.finish()
                 return
+            if int(message.text) <= 0:
+                await message.answer(_["bigger_zero"], reply_markup=start_keyb(_['balance_button'], _["sot_network_button"] ,_['tokens_output_button'], _["ref_button"]))
+                await state.finish()
+                return 
             await db_worker.minus_user_tokens(user['id'], int(message.text))
             id = await db_worker.add_tokens_output(user['id'], datetime.now(), int(message.text))
             if id:
