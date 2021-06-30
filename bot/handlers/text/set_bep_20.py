@@ -14,7 +14,7 @@ async def set_bep_20(message: types.Message, user: dict, db_worker: DBWorker, _:
         await db_worker.set_bep_address(message.text, message.from_user.id)
         await state.finish()
         chat_name_url = {}
-        for group_id in groups:
+        for group_id in groups[user['lang_id']]:
             chat = await message.bot.get_chat(group_id)
             chat_name_url[chat.full_name] = await chat.get_url()
         await message.answer_photo(InputFile("twitter.jpg", filename="twitter.jpg"), caption=_["twitter_subscribe"], reply_markup=twitter_keyb("https://twitter.com/safebull1"))

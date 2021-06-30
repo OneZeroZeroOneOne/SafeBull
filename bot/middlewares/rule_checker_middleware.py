@@ -30,7 +30,7 @@ class RuleCheckerMiddleware(LifetimeControllerMiddleware):
         else:
             message.conf["is_private"] = False
         message.conf["in_groups"] = True
-        for i in groups:
+        for i in groups[data['user']['lang_id']]:
             chat = await message.bot.get_chat(i)
             chat_member = await chat.get_member(message.from_user.id)
             if chat_member.status == "left":

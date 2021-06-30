@@ -7,12 +7,12 @@ from database.db_worker import DBWorker
 from aiogram.dispatcher import FSMContext
 from handlers.keybs.simple_text import simple_text
 from handlers.fsm.tokens_output import TokensOutputForm
-from config import groups
 from datetime import datetime
 
 async def tokens_output(message: types.Message, user: dict, db_worker: DBWorker, _: dict):
     exist_output = await db_worker.get_tokens_output(user['id'])
     if not exist_output:
+        await message.answer(_['need_safebull_in_wallet'])
         await TokensOutputForm.set_count.set()
         await message.answer(_['tokens_output'].format(user['tokens']), reply_markup=cancel(_['cancel_button']))
     else:

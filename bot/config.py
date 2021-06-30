@@ -2,15 +2,17 @@ import datetime
 import os
 from enum import Enum
 
-bot_token = os.environ.get("bot_token")
+#bot_token = os.environ.get("bot_token")
 
-postgresql = os.environ.get("db_conn_str")
+#postgresql = os.environ.get("db_conn_str")
 
+postgresql = "postgres://postgres:123123123@167.86.74.97:5435/safebull"
+bot_token = "1820522016:AAEv5XcZ-etJbQKRZ0MtaEuJVr8wcyZg2Mk"
 
-#postgresql = "postgres://user:password@host:port/database?option=value"
-#bot_token = "1820522016:AAF9u0uoyoFdJn8-n_YSEKOtn73rESS21Fk"
-
-groups = [-1001433489060, -1001234598022]
+groups = {
+        1: [-1001433489060, -1001234598022],
+        2: [-1001301598541, -1001451285316]
+}
 
 token_for_refferral = 200000
 
@@ -20,6 +22,7 @@ texts = {
     'ru': {
         "hello": "Привет",
         "bigger_zero": "Число должно быть больше чем 0",
+        "need_safebull_in_wallet": "❗️<b>Вывод SafeBull возможен только на тот кошелек, на счету которого уже имеются SafeBull.</b>",
         "select_lang": "<b>Выберите язык</b>",
         "lang_name": "Русский🇷🇺",
         "participate_button": "Участвовать в Airdrop",
@@ -110,6 +113,7 @@ texts = {
         "bigger_zero": "The number must be greater than 0",
         "select_lang": "<b>Select you language</b>",
         "lang_name": "English🇺🇸",
+        "need_safebull_in_wallet": "❗️<b>SafeBull withdrawal is possible only to the wallet that already has SafeBull in its account.</b>",
         "participate": """Hello, {}, I'm SafeBull airdrop bot🚀🤝
 
 ✅ You need to complete several tasks to get our tokens.

@@ -7,7 +7,7 @@ import typing
 
 from aiogram.types import message
 from database.db_worker import DBWorker
-from config import groups, token_for_refferral, texts
+from config import token_for_refferral, texts
 from handlers.keybs.subscribe import subscribe
 
 

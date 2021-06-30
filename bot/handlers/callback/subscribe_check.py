@@ -16,7 +16,7 @@ async def subscribe_check_false(
 ):
     await query.message.answer(_["subscribe_check_false"])
     chat_name_url = {}
-    for group_id in groups:
+    for group_id in groups[user['lang_id']]:
         chat = await query.bot.get_chat(group_id)
         chat_name_url[chat.full_name] = await chat.get_url()
     await query.message.answer(
