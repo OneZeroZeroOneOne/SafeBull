@@ -7,11 +7,12 @@ from enum import Enum
 #postgresql = os.environ.get("db_conn_str")
 
 postgresql = "postgres://postgres:123123123@167.86.74.97:5435/safebull"
+
 bot_token = "1820522016:AAEv5XcZ-etJbQKRZ0MtaEuJVr8wcyZg2Mk"
 
 groups = {
-        1: [-1001433489060, -1001234598022],
-        2: [-1001301598541, -1001451285316]
+        1: [-1001510800816, -1001510800816],
+        2: [-1001510800816, -1001510800816]
 }
 
 token_for_refferral = 200000
